@@ -317,60 +317,60 @@
   </div>
 </section>
 
+<!-- Footer -->
+<footer class="text-center mt-5 py-4" style="background-color: rgba(255, 255, 255, 0.95); box-shadow: 0 -2px 8px rgba(0,0,0,0.05);">
+  <div style="color: var(--text-color); font-size: 1rem;">
+    <strong>Contact:</strong> +62812323 &nbsp;|&nbsp;
+    <strong>Email:</strong> Muar@co.id<br>
+    <strong>Address:</strong> Jl. Cinta Kasih Sayang No. 123, Jakarta, Indonesia
+  </div>
+  <p class="mb-0 mt-2" style="color: var(--primary-color);">&copy; 2025 MUAR. All rights reserved.</p>
+</footer>
+
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- JS Simulate Fetch from Backend -->
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const data = [
-      {
-        mua_name: "Sarah Makeup",
-        expertise: ["Bridal"],
-        booking_date: "2025-06-15",
-        status: "completed"
-      },
-      {
-        mua_name: "Dian Beauty",
-        expertise: ["Editorial", "Graduation"],
-        booking_date: "2025-06-20",
-        status: "approved"
-      },
-      {
-        mua_name: "Rina Artist",
-        expertise: ["Party"],
-        booking_date: "2025-06-25",
-        status: "waiting-approval"
-      },
-      {
-        mua_name: "Lia Professional",
-        expertise: ["Bridal", "Pre-Wedding"],
-        booking_date: "2025-07-05",
-        status: "waiting-approval"
-      }
-    ];
+ document.addEventListener('DOMContentLoaded', () => {
+  fetch('../be/mua_schedule.php')
+    .then(response => response.json())
+    .then(data => {
+      const tbody = document.getElementById("service-table");
+      tbody.innerHTML = "";
 
-    const tbody = document.getElementById("service-table");
-    tbody.innerHTML = "";
+      data.forEach(item => {
+        let statusClass = '';
+        switch (item.status) {
+          case 'Menunggu Approve': statusClass = 'waiting-approval'; break;
+          case 'Disetujui': statusClass = 'approved'; break;
+          case 'Sedang Dilakukan': statusClass = 'in-progress'; break;
+          case 'Selesai': statusClass = 'completed'; break;
+          case 'Dibatalkan': statusClass = 'cancelled'; break;
+          case 'Ditolak': statusClass = 'rejected'; break;
+          default: statusClass = '';
+        }
 
-    data.forEach(item => {
-      const tr = document.createElement("tr");
-      const expertiseBadges = item.expertise.map(e => `<span class="badge-category">${e}</span>`).join(' ');
+        const date = new Date(item.tanggal_layanan);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = date.toLocaleDateString('id-ID', options);
 
-      // Format date to readable format, e.g., June 15, 2025
-      const date = new Date(item.booking_date);
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = date.toLocaleDateString('en-US', options);
-
-      tr.innerHTML = `
-        <td data-label="MUA Name">${item.mua_name}</td>
-        <td data-label="Expertise">${expertiseBadges}</td>
-        <td data-label="Booking Date">${formattedDate}</td>
-        <td data-label="Status"><span class="status ${item.status}">${item.status.replace(/-/g, ' ').toUpperCase()}</span></td>
-      `;
-      tbody.appendChild(tr);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td data-label="MUA Name">${item.nama_mua}</td>
+          <td data-label="Expertise">${item.keahlian}</td>
+          <td data-label="Booking Date">${formattedDate}</td>
+          <td data-label="Status"><span class="status ${statusClass}">${item.status}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching schedule:', error);
     });
-  });
+});
+
+
 </script>
 
 </body>

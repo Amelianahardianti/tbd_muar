@@ -80,11 +80,11 @@ if ($method === 'POST') {
     $stmt2->bind_param("iiss", $id_mua, $id_pelanggan, $tanggal_layanan, $status_default);
     $stmt2->execute();
 
-    if ($stmt2->affected_rows > 0) {
-        echo json_encode(['success' => 'Reservasi berhasil']);
-    } else {
-        echo json_encode(['error' => 'Reservasi gagal']);
-    }
+if ($stmt2->affected_rows > 0) {
+    echo "Reservasi berhasil, silakan tunggu MUA menghubungi Anda";
+} else {
+    echo "Reservasi gagal, silakan coba lagi";
+}
 
     $stmt2->close();
     $conn->close();

@@ -1,0 +1,37 @@
+<?php
+require_once("koneksi.php"); // sesuaikan
+
+header('Content-Type: application/json');
+
+if (!isset($_GET['mua_id'])) {
+  echo json_encode([]);
+  exit;
+}
+
+$mua_id = intval($_GET['mua_id']);
+
+$sql = "SELECT 
+          layanan.id_layanan,
+          pelanggan.nama AS nama_pelanggan,
+          pelanggan.kontak,
+          layanan.tanggal_layanan,
+          layanan.status
+        FROM layanan
+        JOIN pelanggan ON layanan.id_pelanggan = pelanggan.id_pelanggan
+        WHERE layanan.id_mua = ?
+        ORDER BY layanan.tanggal_layanan DESC";
+
+$conn = new mysqli("localhost", "root", "", "muar_db", 3307); // sesuaikan
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $mua_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$orders = [];
+while ($row = $result->fetch_assoc()) {
+    $orders[] = $row;
+}
+
+echo json_encode($orders);
+?>

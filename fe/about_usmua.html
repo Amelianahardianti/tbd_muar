@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MUA List - MUAR</title>
+  <title>About Us - MUAR</title> 
 
   <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
-     :root {
+    :root {
       --primary-color: #b79ea6;
       --primary-dark: #8a6d75;
       --secondary-color: #e9d6d9;
@@ -82,6 +82,7 @@
       font-size: 1.3rem;
       color: var(--primary-color);
       line-height: 1;
+      text-transform: lowercase;
     }
 
     .logo-tagline {
@@ -108,91 +109,108 @@
       box-shadow: 0 4px 8px rgba(183, 158, 166, 0.3);
     }
 
-    /* Main title */
-    .main-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 3.5rem;
-      letter-spacing: 0.05em;
-      margin-top: 4rem;
-      margin-bottom: 1rem;
-      color: #000;
+    .section-title {
+      font-family: 'Didot', serif;
+      font-size: 2.2rem;
+      color: #4a3f35;
       text-align: center;
-      animation: fadeInDown 1s ease forwards;
+      margin-bottom: 2rem;
     }
 
-    /* Card */
-    .card {
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
-      transition: transform 0.2s ease;
-      margin: 10px 0;
-      display: flex;
-      flex-direction: column;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
-    }
-    .card-img-top {
-      border-radius: 12px 12px 0 0;
-      height: 220px;
-      object-fit: cover;
-      object-position: center;
-    }
-    .card-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding: 1rem;
-      flex-grow: 1;
-    }
-    .card-body h5.card-title {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-    .card-text {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 250;
-      font-size: 1rem;
-      color: #333;
-      line-height: 1.4;
-      margin-bottom: 1.2rem;
+    .about-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem;
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     }
 
-    /* Button reservasi */
-    .reservasi-btn {
-      background-color: #b79ea6;
-      color: white;
+    .about-wrapper p {
+      color: #5f4b4b;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .about-wrapper h4 {
+      color: #a4717b;
       font-weight: 600;
-      padding: 12px 0;
-      border-radius: 0 0 0.5rem 0.5rem;
-      text-align: center;
-      display: block;
-      width: 100%;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
-      margin-top: auto; /* push button ke bawah card */
-    }
-    .reservasi-btn:hover {
-      background-color: #a07584;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
     }
 
-    /* Responsive grid gap */
-    .row.g-4 > * {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 2rem;
+      color: var(--text-color);
+      text-align: center;
+      margin-bottom: 2rem;
     }
+
+
+    .team {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .team-member {
+      text-align: center;
+      max-width: 200px;
+      width: 200px;
+    }
+
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #e9d6d9;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .team-member h6 {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      color: #5b3f45;
+      font-size: 1rem;
+    }
+
+    .team-member span {
+      font-size: 0.9rem;
+      color: #8d7a7a;
+    }
+    .btn-logout {
+      background-color: #cf7da8;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 0.5rem 1.5rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-logout:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+
+    .btn-logout:hover {
+      background-color: #cc5079;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    }
+
   </style>
 </head>
-
 <body>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
     <a class="navbar-brand logo-container" href="#">
@@ -214,28 +232,57 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav align-items-center">
-        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="MUA_Reservation.html">MUA Reservation</a></li>
-        <li class="nav-item"><a class="nav-link" href="MUA_Schedule.html">MUA Schedule</a></li>
-        <li class="nav-item"><a class="nav-link" href="about_us.html">About us</a></li>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="dashboardmua.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_usmua.html">About us</a></li>
         <li class="nav-item ms-lg-3">
-          <a href="login.html" class="btn btn-primary-custom">Login</a>
+          <a href="../be/logout.php" class="btn btn-logout" onclick="return confirm('Yakin ingin logout?')">Logout</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Main title -->
-<h1 class="main-title">CHOOSE YOUR MUA</h1>
+<!-- Content -->
+<section class="container mt-5 mb-5">
+  <div class="about-wrapper">
+    <h2 class="section-title">About MUAR</h2>
+    <p>
+      MUAR is a makeup artist reservation platform designed to help you feel confident on every special occasion. With a network of professional MUAs across various cities, we provide personalized service and the best quality with just a few clicks.
+    </p>
 
-<!-- MUA List -->
-<div class="container mt-4">
-  <div class="row g-4" id="mua-items">
-    <!-- Cards will be injected here by JS -->
+    <h4>Our Vision</h4>
+    <p>
+      To become the most trusted platform for professional makeup services that are easy, fast, and of high quality.
+    </p>
+
+    <h4>Our Mission</h4>
+    <ul>
+      <li>Connecting clients with high-quality MUAs.</li>
+      <li>Providing a practical and comfortable reservation experience.</li>
+      <li>Supporting local MUAs to grow through technology.</li>
+    </ul>
+
+    <h4>Our Team</h4>
+    <div class="team">
+      <div class="team-member">
+        <img src="../assets/tim5.jpg" alt="Founder" />
+        <h6>Fadel</h6>
+        <span>Founder</span>
+      </div>
+      <div class="team-member">
+        <img src="../assets/tim2.jpg" alt="Creative Director" />
+        <h6>Putri</h6>
+        <span>Creative Director</span>
+      </div>
+      <div class="team-member">
+        <img src="../assets/tim3.jpg" alt="Developer" />
+        <h6>Amelia</h6>
+        <span>Developer</span>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- Footer -->
 <footer class="text-center mt-5 py-4" style="background-color: rgba(255, 255, 255, 0.95); box-shadow: 0 -2px 8px rgba(0,0,0,0.05);">
@@ -247,52 +294,7 @@
   <p class="mb-0 mt-2" style="color: var(--primary-color);">&copy; 2025 MUAR. All rights reserved.</p>
 </footer>
 
-<!-- Bootstrap JS Bundle -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- JS: Fetch MUA data from backend -->
-<script>
-  function loadMuaData() {
-    fetch('../be/get_mua.php')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('mua-items');
-        container.innerHTML = '';
-
-        if (data.length === 0) {
-          container.innerHTML = '<p class="text-center">No MUA data available.</p>';
-          return;
-        }
-
-        data.forEach(mua => {
-          const card = document.createElement('div');
-          card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
-          card.innerHTML = `
-            <div class="card shadow-sm">
-              <img src="../assets/${mua.foto}" alt="${mua.nama}" class="card-img-top" />
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">${mua.nama}</h5>
-                <p class="card-text">
-                  <strong>Expertise:</strong> ${mua.keahlian}<br />
-                  <strong>Rate:</strong> Rp ${parseFloat(mua.tarif).toLocaleString('id-ID')}<br />
-                  <strong>Location:</strong> ${mua.lokasi}
-                </p>
-                <a href="reservasi.html?id_mua=${mua.id_mua}" class="reservasi-btn">Reservation</a>
-              </div>
-            </div>
-          `;
-          container.appendChild(card);
-        });
-      })
-      .catch(err => {
-        const container = document.getElementById('mua-items');
-        container.innerHTML = '<p class="text-center text-danger">Failed to load MUA data.</p>';
-        console.error(err);
-      });
-  }
-
-  document.addEventListener('DOMContentLoaded', loadMuaData);
-</script>
-
 </body>
 </html>

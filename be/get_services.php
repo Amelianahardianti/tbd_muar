@@ -3,30 +3,38 @@ include('koneksi.php');
 
 // Cek koneksi database
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    http_response_code(500);
+    echo json_encode(['error' => 'Database connection failed']);
+    exit;
 }
 
-// Query untuk mengambil data layanan yang dipesan
-$sql = "SELECT L.id_layanan, P.nama as pelanggan, M.nama as mua, L.tanggal_layanan
-        FROM Layanan L
-        JOIN Pelanggan P ON L.id_pelanggan = P.id_pelanggan
-        JOIN MUA M ON L.id_mua = M.id_mua";
+// Query untuk mengambil data layanan beserta nama pelanggan dan MUA
+$sql = "SELECT 
+            L.id_layanan, 
+            P.nama AS pelanggan, 
+            M.nama AS mua, 
+            L.tanggal_layanan, 
+            L.status
+        FROM layanan L
+        JOIN pelanggan P ON L.id_pelanggan = P.id_pelanggan
+        JOIN mua M ON L.id_mua = M.id_mua
+        ORDER BY L.tanggal_layanan DESC";
+
 $result = $conn->query($sql);
 
 $services = [];
-if ($result->num_rows > 0) {
-    // Ambil data layanan
-    while($row = $result->fetch_assoc()) {
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Jika ingin format tanggal lebih mudah dibaca, bisa ubah di sini (opsional)
+        $row['tanggal_layanan'] = date('Y-m-d', strtotime($row['tanggal_layanan']));
         $services[] = $row;
     }
-} else {
-    // Jika tidak ada data
-    $services = [];
 }
 
-// Kirimkan data dalam format JSON ke front-end
+// Kirim data JSON ke frontend
+header('Content-Type: application/json');
 echo json_encode($services);
 
-// Menutup koneksi
+// Tutup koneksi
 $conn->close();
 ?>

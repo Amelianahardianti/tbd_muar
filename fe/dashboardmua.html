@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
   <title>Dashboard MUA - MUAR</title>
 
   <!-- Bootstrap CSS CDN -->
@@ -20,10 +20,10 @@
       --text-color: #4a3f35;
       --light-bg: #faf8f8;
     }
-    
+
     body {
       background-color: var(--light-bg);
-      padding-top: 70px; /* supaya navbar fixed tidak menutupi konten */
+      padding-top: 70px;
       font-family: 'Poppins', sans-serif;
       color: var(--text-color);
     }
@@ -33,10 +33,6 @@
       backdrop-filter: saturate(180%) blur(10px);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       padding: 0.5rem 0;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1030;
     }
 
     nav .nav-link {
@@ -48,8 +44,7 @@
       position: relative;
     }
 
-    nav .nav-link:hover,
-    nav .nav-link.active {
+    nav .nav-link:hover {
       color: var(--primary-color);
     }
 
@@ -64,8 +59,7 @@
       transition: width 0.3s ease;
     }
 
-    nav .nav-link:hover:after,
-    nav .nav-link.active:after {
+    nav .nav-link:hover:after {
       width: 100%;
     }
 
@@ -99,60 +93,319 @@
       margin-top: -4px;
     }
 
-    .btn-primary-custom {
-      background-color: var(--primary-color);
+    .btn-logout {
+      background-color: #cf7da8;
       color: white;
       border: none;
       border-radius: 25px;
       padding: 0.5rem 1.5rem;
       font-weight: 600;
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
-    .btn-primary-custom:hover {
-      background-color: var(--primary-dark);
+    .btn-logout:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+
+    .btn-logout:hover {
+      background-color: #cc5079;
+      color: white;
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(183, 158, 166, 0.3);
+      box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
     }
 
-    /* Container Dashboard - sesuai desain dashboard */
-    .container-dashboard {
-      max-width: 700px;
-      margin: 4rem auto 6rem auto;
-      background-color: white;
-      border-radius: 20px;
-      padding: 3rem 2rem;
-      box-shadow: 0 6px 20px rgba(183, 158, 166, 0.3);
-      text-align: center;
+    .main-title {
       font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 3.5rem;
+      letter-spacing: 0.05em;
+      margin-top: 4rem;
+      margin-bottom: 1rem;
+      color: #000;
+      text-align: center;
+    }
+
+    .welcome-box {
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 3rem 3.5rem;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(183, 158, 166, 0.1);
+    }
+
+    .welcome-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    }
+
+    #mua-photo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--primary-color);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    #mua-photo:hover {
+      transform: scale(1.05);
+    }
+
+    .welcome-content {
+      flex: 1;
+    }
+
+    #mua-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+      line-height: 1.2;
+    }
+
+    .welcome-text {
+      font-size: 1.3rem;
+      color: #6e5a53;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-username {
+      font-size: 1rem;
+      color: #8e7a83;
+      font-style: italic;
+    }
+
+    .order-list {
+      margin-top: 3rem;
+    }
+
+    .order-item {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .order-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .status-badge {
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
       font-weight: 600;
-      font-size: 1.8rem;
+    }
+
+    .status-menunggu-approve {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    .status-disetujui {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .status-sedang-dilakukan {
+      background-color: #cce7ff;
+      color: #004085;
+    }
+
+    .status-selesai {
+      background-color: #d1ecf1;
+      color: #0c5460;
+    }
+
+    .status-dibatalkan {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .status-ditolak {
+      background-color: #f5c6cb;
+      color: #721c24;
+    }
+
+    .status-selector {
+      background-color: var(--secondary-color);
+      border: 1px solid var(--primary-color);
+      border-radius: 10px;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.85rem;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    .status-selector:focus {
+      box-shadow: 0 0 0 0.2rem rgba(183, 158, 166, 0.25);
+      border-color: var(--primary-dark);
+    }
+
+    .btn-update-status {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-update-status:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-update-status:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-delete-account {
+      background-color: #cf7da8;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .btn-delete-account:hover {
+      background-color: #cc5079;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+
+    .spinner-border {
       color: var(--primary-color);
     }
 
-    .container-dashboard span {
-      display: block;
-      margin-top: 1rem;
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: #5b3f45;
+    .no-orders {
+      text-align: center;
+      padding: 3rem;
+      color: #8e7a83;
     }
 
-    @media (max-width: 576px) {
-      .container-dashboard {
-        margin: 3rem 1rem 4rem 1rem;
-        padding: 2rem 1.5rem;
-        font-size: 1.5rem;
-      }
+    .no-orders i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
+
+    .order-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      display: none;
+    }
+
+    .loading-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+      .faq-section {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 3rem;
+  }
+
+    /* Menghilangkan warna biru saat accordion button diklik (focus) */
+    .accordion-button:focus {
+      box-shadow: none; /* Hilangkan efek fokus yang menyebabkan perubahan warna biru */
+      border-color: var(--primary-color); /* Tetap beri border warna utama jika perlu */
+    }
+
+    /* Ketika accordion button terbuka */
+    .accordion-button:not(.collapsed) {
+      background-color: #f8d7da; /* Ubah background jadi pink muda */
+      color: #a64586; /* Ubah teks jadi warna merah gelap untuk kontras */
+    }
+
+    /* Ketika accordion button tertutup */
+    .accordion-button.collapsed {
+      background-color: #f7f7f7; /* Warna background saat tombol tertutup */
+      color: var(--primary-color); /* Warna teks saat tombol tertutup */
+    }
+
+    /* Efek hover pada tombol accordion */
+    .accordion-button:hover {
+      background-color: var(--primary-color); /* Warna background ketika hover */
+      color: #ffe8f4; /* Ubah warna teks saat hover */
+    }
+
+    /* Konten body accordion */
+    .accordion-body {
+      font-size: 1rem;
+      color: #6e5a53; /* Warna teks dalam body accordion */
+    }
+
+    /* Margin untuk setiap item accordion */
+    .accordion-item {
+      margin-bottom: 1rem; /* Jarak antar item FAQ */
+    }
+
   </style>
 </head>
 <body>
 
+<!-- Loading Overlay -->
+<div id="loading-overlay" class="loading-overlay">
+  <div class="loading-content">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2">Updating status...</p>
+  </div>
+</div>
+
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
-    <a class="navbar-brand logo-container" href="dashboardmua.html">
+    <a class="navbar-brand logo-container" href="#">
       <div class="logo-icon"></div>
       <div>
         <div class="logo-text">muar</div>
@@ -163,30 +416,19 @@
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDashboard"
-      aria-controls="navbarNavDashboard"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDashboard">
-      <ul class="navbar-nav align-items-center">
-        <li class="nav-item">
-          <a class="nav-link active" href="dashboardmua.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="permintaan_reservasi.html">Reservation Requests</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="about_us.html">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="profile.html">Profile</a>
-        </li>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="dashboardmua.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about_usmua.html">About us</a></li>
         <li class="nav-item ms-lg-3">
-          <a href="logout.php" class="btn btn-primary-custom">Logout</a>
+          <a href="../be/logout.php" class="btn btn-logout" onclick="return confirm('Yakin ingin logout?')">Logout</a>
         </li>
       </ul>
     </div>
@@ -194,15 +436,376 @@
 </nav>
 
 <!-- Dashboard Content -->
-<div class="container-dashboard">
-  Welcome to your dashboard,
-  <span>
-    Manage your reservations and profile here.
-  </span>
+<div class="container">
+  <h1 class="main-title">BE FAST BE PRETTY</h1>
+
+  <!-- Welcome Box -->
+  <div id="welcome-box" class="welcome-box">
+    <img id="mua-photo" src="../assets/default.png" alt="Foto MUA" />
+    
+    <div class="welcome-content">
+      <h1 id="mua-name">Loading...</h1>
+      <p class="welcome-text">Have a beautiful day ✨</p>
+      <p id="mua-username" class="welcome-username">@loading...</p>
+    </div>
+  </div>
+
+  <!-- Daftar Pemesan -->
+  <div class="order-list">
+    <h3 style="color: var(--primary-color); font-family: 'Playfair Display', serif; font-weight: 600; margin-bottom: 1.5rem;">
+      Reservation List
+    </h3>
+    <div id="order-container">
+      <div class="loading-spinner">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- FAQ Section -->
+<div class="faq-section">
+  <h3 style="color: var(--primary-color); font-family: 'Playfair Display', serif; font-weight: 600; margin-bottom: 1.5rem;">
+    Frequently Asked Questions (FAQ)
+  </h3>
+  <div class="accordion" id="faqAccordion">
+    <!-- FAQ 1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqContentOne" aria-expanded="true" aria-controls="faqContentOne">
+          How do I update the reservation status?
+        </button>
+      </h2>
+      <div id="faqContentOne" class="accordion-collapse collapse show" aria-labelledby="faqOne" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          To update the reservation status, simply select the new status from the dropdown in the reservation list and click 'Update'.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqContentTwo" aria-expanded="false" aria-controls="faqContentTwo">
+          What should I do if there's an issue with the customer?
+        </button>
+      </h2>
+      <div id="faqContentTwo" class="accordion-collapse collapse" aria-labelledby="faqTwo" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          If you encounter any issue with the customer, please contact support directly via our help desk for assistance.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 3 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqThree">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqContentThree" aria-expanded="false" aria-controls="faqContentThree">
+          If I accept the reservation, what happens next?                                                         
+        </button>
+      </h2>
+      <div id="faqContentThree" class="accordion-collapse collapse" aria-labelledby="faqThree" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">                       
+          Please contact the customer directly to confirm the details of the reservation. Once you accept, the status will change to "Disetujui" and you can proceed with the service.                       
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 4 (Fixed) -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqFour"> <!-- Changed from faqThree to faqFour -->
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqContentFour" aria-expanded="false" aria-controls="faqContentFour">
+          Can I change my profile photo?
+        </button>
+      </h2>
+      <div id="faqContentFour" class="accordion-collapse collapse" aria-labelledby="faqFour" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Sorry, you can't change your profile photo at the moment. Please contact support for further assistance.
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- Bootstrap JS Bundle -->
+  
+
+  <!-- Hapus Akun Button -->
+  <button class="btn-delete-account" onclick="deleteAccount()">
+    <i class="bi bi-trash"></i> Hapus Akun
+  </button>
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-5 py-4" style="background-color: rgba(255, 255, 255, 0.95); box-shadow: 0 -2px 8px rgba(0,0,0,0.05);">
+  <div style="color: var(--text-color); font-size: 1rem;">
+    <strong>Contact:</strong> +62812323 &nbsp;|&nbsp;
+    <strong>Email:</strong> Muar@co.id<br>
+    <strong>Address:</strong> Jl. Cinta Kasih Sayang No. 123, Jakarta, Indonesia
+  </div>
+  <p class="mb-0 mt-2" style="color: var(--primary-color);">&copy; 2025 MUAR. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Ambil data dari PHP backend
+  fetch('../be/dashboardmua.php?ajax=1')
+    .then(response => {
+      console.log('Response status:', response.status);
+      
+      if (!response.ok) {
+        if (response.status === 401) {
+          // Not authenticated, redirect to login
+          window.location.href = "login.html";
+          return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Data received:', data);
+      
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      
+      // Update profile info
+      document.getElementById('mua-name').textContent = `Welcome, ${data.nama}!`;
+      document.getElementById('mua-username').textContent = `@${data.username}`;
+      
+      // Update foto dengan error handling
+      const photoElement = document.getElementById('mua-photo');
+      if (data.foto && data.foto !== '../assets/default.png') {
+        photoElement.src = data.foto;
+      } else {
+        photoElement.src = '../assets/default.png';
+      }
+      
+      photoElement.onerror = function() {
+        console.log('Failed to load photo, using default');
+        this.src = '../assets/default.png';
+      };
+
+      // Update reservations list
+      const orderContainer = document.getElementById('order-container');
+      
+      if (data.reservations && data.reservations.length > 0) {
+        orderContainer.innerHTML = '';
+        
+        data.reservations.forEach(reservation => {
+          const orderItem = document.createElement('div');
+          orderItem.className = 'order-item';
+          
+          const date = new Date(reservation.tanggal_layanan);
+          const formattedDate = date.toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          });
+          
+          let statusClass = getStatusClass(reservation.status);
+          
+          orderItem.innerHTML = `
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="flex-grow-1">
+                <h5 style="color: var(--primary-color); margin-bottom: 0.5rem;">
+                  ${reservation.nama_pemesan}
+                </h5>
+              <p class="mb-1" style="color: var(--text-color);">
+              <i class="bi bi-telephone"></i> ${reservation.kontak}  <!-- Tambahkan Kontak -->
+              </p>
+                <p class="mb-1" style="color: var(--text-color);">
+                  <i class="bi bi-calendar-event"></i> ${formattedDate}
+                </p>
+                <div class="order-actions">
+                  <select class="status-selector" id="status-${reservation.id}">
+                    <option value="Menunggu Approve" ${reservation.status === 'Menunggu Approve' ? 'selected' : ''}>Pending Approval</option>
+                    <option value="Disetujui" ${reservation.status === 'Disetujui' ? 'selected' : ''}>Approved</option>
+                    <option value="Sedang Dilakukan" ${reservation.status === 'Sedang Dilakukan' ? 'selected' : ''}>In Progress</option>
+                    <option value="Selesai" ${reservation.status === 'Selesai' ? 'selected' : ''}>Completed</option>
+                    <option value="Dibatalkan" ${reservation.status === 'Dibatalkan' ? 'selected' : ''}>Cancelled</option>
+                    <option value="Ditolak" ${reservation.status === 'Ditolak' ? 'selected' : ''}>Rejected</option>
+                  </select>
+                  <button class="btn-update-status" onclick="updateStatus(${reservation.id})">
+                    <i class="bi bi-check-circle"></i> Update
+                  </button>
+                </div>
+              </div>
+              <div>
+                <span class="status-badge ${statusClass}" id="badge-${reservation.id}">
+                  ${reservation.status}
+                </span>
+              </div>
+            </div>
+          `;
+          
+          orderContainer.appendChild(orderItem);
+        });
+      } else {
+        orderContainer.innerHTML = `
+          <div class="no-orders">
+            <i class="bi bi-calendar-x"></i>
+            <p>Belum ada pemesanan untuk saat ini.</p>
+          </div>
+        `;
+      }
+      
+      // Store data for delete function
+      window.muaId = data.id;
+    })
+    .catch(error => {
+      console.error('Error loading MUA data:', error);
+      document.getElementById('mua-name').textContent = 'Error loading data';
+      document.getElementById('mua-username').textContent = '@error';
+      document.getElementById('order-container').innerHTML = `
+        <div class="no-orders">
+          <i class="bi bi-exclamation-triangle"></i>
+          <p>Gagal memuat data. Silakan refresh halaman atau login ulang.</p>
+          <button onclick="window.location.href='login.html'" class="btn btn-outline-primary mt-2">
+            Login Ulang
+          </button>
+        </div>
+      `;
+    });
+});
+
+// Function to get status class for styling
+function getStatusClass(status) {
+  const statusMap = {
+    'Menunggu Approve': 'status-menunggu-approve',
+    'Disetujui': 'status-disetujui',
+    'Sedang Dilakukan': 'status-sedang-dilakukan',
+    'Selesai': 'status-selesai',
+    'Dibatalkan': 'status-dibatalkan',
+    'Ditolak': 'status-ditolak'
+  };
+  return statusMap[status] || 'status-menunggu-approve';
+}
+
+// Function to update order status
+function updateStatus(orderId) {
+  const statusSelector = document.getElementById(`status-${orderId}`);
+  const newStatus = statusSelector.value;
+  const badge = document.getElementById(`badge-${orderId}`);
+  const updateButton = event.target;
+  
+  // Show loading
+  updateButton.disabled = true;
+  updateButton.innerHTML = '<i class="bi bi-hourglass-split"></i> Updating...';
+  document.getElementById('loading-overlay').style.display = 'flex';
+  
+  // Send update request
+  fetch('../be/update_status.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      order_id: orderId,
+      new_status: newStatus
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      // Update badge
+      badge.textContent = newStatus;
+      badge.className = `status-badge ${getStatusClass(newStatus)}`;
+      
+      // Show success message
+      showNotification('Status berhasil diupdate!', 'success');
+    } else {
+      // Show error message
+      showNotification('Gagal mengupdate status: ' + (data.message || 'Unknown error'), 'error');
+      
+      // Reset selector to original value
+      // You might want to store original values to reset properly
+    }
+  })
+  .catch(error => {
+    console.error('Error updating status:', error);
+    showNotification('Terjadi kesalahan saat mengupdate status', 'error');
+  })
+  .finally(() => {
+    // Hide loading
+    updateButton.disabled = false;
+    updateButton.innerHTML = '<i class="bi bi-check-circle"></i> Update';
+    document.getElementById('loading-overlay').style.display = 'none';
+  });
+}
+
+// Function to show notifications
+function showNotification(message, type = 'info') {
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.className = `alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show position-fixed`;
+  notification.style.cssText = 'top: 100px; right: 20px; z-index: 1050; max-width: 400px;';
+  notification.innerHTML = `
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Auto remove after 5 seconds
+  setTimeout(() => {
+    if (notification.parentElement) {
+      notification.remove();
+    }
+  }, 5000);
+}
+
+// Function to delete account
+// Function to delete account - FIXED VERSION
+// Fungsi untuk hapus akun
+function deleteAccount() {
+  // Konfirmasi pertama
+  const confirmDelete = confirm("⚠️ Yakin ingin menghapus akun?");
+
+  if (!confirmDelete) return;
+
+  // Konfirmasi kedua dengan prompt
+  const confirmText = prompt("Ketik 'HAPUS' untuk melanjutkan:");
+
+  if (confirmText !== 'HAPUS') {
+    alert("Penghapusan akun dibatalkan.");
+    return;
+  }
+
+  // Tampil loading
+  const deleteButton = document.querySelector('.btn-delete-account');
+  deleteButton.disabled = true;
+  deleteButton.innerHTML = 'Menghapus akun...';
+
+  // Kirim request ke backend untuk hapus akun
+  fetch('../be/hapus_akun.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'delete_account', confirm: 'HAPUS' })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert(data.message);
+      setTimeout(() => {
+        window.location.href = "login.html"; // Redirect ke halaman login
+      }, 2000);
+    } else {
+      alert("❌ Gagal hapus akun: " + data.message);
+    }
+  })
+  .catch(error => {
+    alert("❌ Terjadi error: " + error.message);
+  })
+  .finally(() => {
+    deleteButton.disabled = false;
+    deleteButton.innerHTML = 'Hapus Akun';
+  });
+}
+</script>
 
 </body>
 </html>
